@@ -9,25 +9,33 @@ body {
   background-color: #3e4451;
 }
 
-select {
+select,
+input[type='text'] {
   width: 50% !important;
   display: unset !important;
 }
-.hide {
-  display: none;
+
+#select-div {
+  margin-top: 1em;
 }
 
-#pais-info {
+#previsao,
+#ondas-div,
+#error-div {
   margin-top: 1em;
   color: white;
 }
 
 .btn {
+  width: 300px;
   vertical-align: unset;
 }
-
+p {
+  margin-bottom: 0.5rem;
+}
 @media (max-width: 600px) {
-  select {
+  select,
+  input[type='text'] {
     width: 95% !important;
   }
   .btn {

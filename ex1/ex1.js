@@ -17,28 +17,40 @@ escolher.addEventListener('click', () => {
 });
 
 async function getPaises() {
-  const response = await fetch(url);
-  const data = await response.json();
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
 
-  data.map((pais, index) => {
-    const nome = document.createElement('option');
-    nome.innerText = pais.nome_pais;
-    nome.value = index;
-    select.appendChild(nome);
-  });
+    data.map((pais, index) => {
+      const nome = document.createElement('option');
+      nome.innerText = pais.nome_pais;
+      nome.value = index;
+      select.appendChild(nome);
+    });
+  } catch (error) {
+    const erro = document.createElement('p');
+    erro.innerText = error;
+    paisInfo.appendChild(erro);
+  }
 }
 
 async function getPaisInfo(pais) {
-  const response = await fetch(url);
-  const data = await response.json();
-  const selecionado = data[pais];
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const selecionado = data[pais];
 
-  paisInfo.innerHTML = `
-    <h2> ${selecionado.nome_pais}</h2>
-    <p> Gentilico: ${selecionado.gentilico} </p>
-    <p> Nome em Inglês: ${selecionado.nome_pais_int} </p>
-    <p> Sigla: ${selecionado.sigla} </p>
-  `;
+    paisInfo.innerHTML = `
+      <h2> ${selecionado.nome_pais}</h2>
+      <p> Gentilico: ${selecionado.gentilico} </p>
+      <p> Nome em Inglês: ${selecionado.nome_pais_int} </p>
+      <p> Sigla: ${selecionado.sigla} </p>
+    `;
+  } catch (error) {
+    const erro = document.createElement('p');
+    erro.innerText = error;
+    paisInfo.appendChild(erro);
+  }
 }
 
 getPaises();
