@@ -5,7 +5,7 @@
 // Internacional - Possui todos os países do Google Maps.
 // Obtido em: https://gist.github.com/jonasruth/61bde1fcf0893bd35eea)
 
-const url = '/../json/paises.json';
+const url = './paises.json';
 
 const paises = document.querySelector('#paises');
 const select = document.querySelector('#select-pais');
