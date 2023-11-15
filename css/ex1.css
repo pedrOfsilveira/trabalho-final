@@ -1,0 +1,25 @@
+:root {
+  font-size: 32px;
+}
+
+body {
+  padding: 1em;
+  background-color: #3e4451;
+}
+
+select {
+  width: 50% !important;
+  display: unset !important;
+}
+.hide {
+  display: none;
+}
+
+#pais-info {
+  margin-top: 1em;
+  color: white;
+}
+
+.btn {
+  vertical-align: unset;
+}
