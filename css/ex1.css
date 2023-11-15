@@ -23,3 +23,13 @@ select {
 .btn {
   vertical-align: unset;
 }
+
+@media (max-width: 600px) {
+  select {
+    width: 95% !important;
+  }
+  .btn {
+    margin-top: 0.5em;
+    width: 95%;
+  }
+}
