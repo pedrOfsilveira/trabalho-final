@@ -36,10 +36,10 @@ p {
 @media (max-width: 600px) {
   select,
   input[type='text'] {
-    width: 95% !important;
+    width: 98% !important;
   }
   .btn {
     margin-top: 0.5em;
-    width: 95%;
+    width: 98%;
   }
 }
