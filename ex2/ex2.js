@@ -14,6 +14,8 @@ const escolherCidade = document.querySelector('#escolher-cidade');
 const previsaoDiv = document.querySelector('#previsao');
 const errorDiv = document.querySelector('#error-div');
 const ondasDiv = document.querySelector('#ondas-div');
+const livrosDiv = document.querySelector('#livros');
+let livroQuantidade = 0;
 
 pesquisarCidade.addEventListener('click', () => {
   buscaCidade(inputCidade.value);
@@ -25,6 +27,8 @@ escolherCidade.addEventListener('click', () => {
   buscaOndas(selectCidade.value);
   selectCidade.value = '';
 });
+
+
 
 async function buscaCidade(nome) {
   try {
@@ -59,12 +63,12 @@ async function buscaPrevisao(id) {
     <h3> Cidade: ${data.cidade} - ${data.estado}</h3>
     <p> Previsão para amanhã: </p>
     <p> ${data.clima[0].condicao_desc} </p>
-    <p> Mínima: ${data.clima[0].min} Máxima: ${data.clima[0].max} </p>`;
+    <p> Mínima: ${data.clima[0].min}ºC Máxima: ${data.clima[0].max}ºC </p>`;
 
     previsaoDiv.classList.remove('d-none');
     selectDiv.classList.remove('d-none');
   } catch (error) {
-    errorDiv.innerHTML = `<h3 class="text-white"> Erro ao buscar previsão. </h3>`;
+    errorDiv.innerHTML = `<h4 class="text-white"> Erro ao buscar previsão. </h4>`;
     previsaoDiv.classList.add('d-none');
     selectDiv.classList.add('d-none');
     ondasDiv.classList.add('d-none');
@@ -88,3 +92,29 @@ async function buscaOndas(id) {
     ondasDiv.innerHTML = '<p> Previsão oceânica indisponível. </p>';
   }
 }
+
+async function buscaLivros(isbn) {
+  try {
+    const url = `https://brasilapi.com.br/api/isbn/v1/${isbn}`
+
+    const response = await fetch(url);
+    const data = await response.json();
+    
+    const img = await data.cover_url;
+
+    livrosDiv.innerHTML += `
+    <div class='text-white mb-5 livro'>
+      <p> Livro: </p>
+      <img alt='capa do livro' class='img-fluid' src='${ img }'>
+      <p class='text-uppercase fw-bold mb-0 mt-2'> ${data.title} - edição de ${data.year} </p>    
+      <p class='mb-0 text-uppercase'> Editora: ${data.publisher} </p>
+      <p class='mb-0 text-uppercase'> Autor: ${data.authors.map(author => ' ' + author)} </p>
+    </div>`
+  } catch (error) {
+    livrosDiv.innerHTML += error;
+  }
+}
+
+buscaLivros('978-8535929225');
+buscaLivros('978-8535931686');
+buscaLivros('978-8537816547');
